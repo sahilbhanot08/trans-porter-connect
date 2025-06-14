@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,6 +12,16 @@ import LiveTracking from '@/components/LiveTracking';
 import PricingCard from '@/components/PricingCard';
 
 const Index = () => {
+  // Ref for "services" section
+  const vehicleRef = useRef<HTMLDivElement | null>(null);
+
+  // Handler to scroll to vehicle selection (used for driver reg/demo)
+  const scrollToVehicleSection = () => {
+    if (vehicleRef.current) {
+      vehicleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
       {/* Navigation */}
@@ -26,9 +36,9 @@ const Index = () => {
               <a href="#services" className="text-gray-600 hover:text-blue-600 transition-colors">Services</a>
               <a href="#tracking" className="text-gray-600 hover:text-blue-600 transition-colors">Track</a>
               <a href="#pricing" className="text-gray-600 hover:text-blue-600 transition-colors">Pricing</a>
-              <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+              {/* <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
                 Driver Sign Up
-              </Button>
+              </Button> */}
               <Button className="bg-blue-600 hover:bg-blue-700">
                 Book Now
               </Button>
@@ -38,10 +48,10 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <HeroSection />
+      <HeroSection onJoinDriverClick={scrollToVehicleSection} />
 
       {/* Vehicle Selection */}
-      <section id="services" className="py-16 bg-white">
+      <section id="services" className="py-16 bg-white" ref={vehicleRef}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Choose Your Vehicle</h2>
@@ -176,7 +186,12 @@ const Index = () => {
               <Truck className="h-5 w-5 mr-2" />
               Book Your First Trip
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-4">
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-4"
+              onClick={scrollToVehicleSection}
+            >
               Join as Driver
             </Button>
           </div>

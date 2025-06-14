@@ -4,14 +4,21 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { MapPin, Clock, Shield, Star } from 'lucide-react';
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onJoinDriverClick?: () => void;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ onJoinDriverClick }) => {
   return (
     <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-green-600 text-white relative overflow-hidden">
       {/* Background pattern */}
-      <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-      }}></div>
-      
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}
+      ></div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
@@ -21,14 +28,14 @@ const HeroSection = () => {
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              Meet Your 
+              Meet Your
               <span className="text-yellow-300"> Logistics Hero!</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed">
-              Tired of calling multiple transporters? Say hello to TransPorter - 
+              Tired of calling multiple transporters? Say hello to TransPorter -
               the <strong>Uber for trucks</strong>, connecting you instantly with trusted drivers.
             </p>
-            
+
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-white bg-opacity-20 rounded-lg">
@@ -57,16 +64,17 @@ const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-4 hover-scale"
               >
                 📦 Book a Truck Now
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
+              <Button
+                size="lg"
+                variant="outline"
                 className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-4"
+                onClick={onJoinDriverClick}
               >
                 🧑‍✈️ Join as Driver
               </Button>
