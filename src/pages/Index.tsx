@@ -21,6 +21,17 @@ const Index = () => {
     }
   };
 
+  // Auth-related state and logic
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    const { data: authListener } = window.supabase.auth.onAuthStateChange((_event, session) => {
+      setLoggedIn(!!session?.user);
+    });
+    window.supabase.auth.getSession().then(({ data: { session } }) => setLoggedIn(!!session?.user));
+    return () => { authListener?.subscription.unsubscribe(); };
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50">
       {/* Navigation */}
@@ -35,9 +46,26 @@ const Index = () => {
               <a href="#services" className="text-gray-600 hover:text-blue-600 transition-colors">Services</a>
               <a href="#tracking" className="text-gray-600 hover:text-blue-600 transition-colors">Track</a>
               <a href="#pricing" className="text-gray-600 hover:text-blue-600 transition-colors">Pricing</a>
-              {/* <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
-                Driver Sign Up
-              </Button> */}
+              <a href="/bookings" className="text-gray-600 hover:text-blue-600 transition-colors">
+                My Bookings
+              </a>
+              {loggedIn ? (
+                <Button
+                  variant="outline"
+                  onClick={async () => {
+                    await window.supabase.auth.signOut();
+                    setLoggedIn(false);
+                    window.location.reload();
+                  }}
+                  className="border-blue-600 text-blue-600 hover:bg-blue-50"
+                >
+                  Logout
+                </Button>
+              ) : (
+                <Button className="bg-blue-600 hover:bg-blue-700" onClick={() => window.location.href = "/auth"}>
+                  Login
+                </Button>
+              )}
               <Button className="bg-blue-600 hover:bg-blue-700" onClick={scrollToVehicleSection}>
                 Book Now
               </Button>

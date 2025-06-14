@@ -9,7 +9,92 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          created_at: string
+          delivery_location: string
+          distance: number | null
+          estimated_price: number | null
+          id: string
+          pickup_location: string
+          scheduled_date: string | null
+          scheduled_time: string | null
+          status: string | null
+          user_id: string
+          vehicle_type: string | null
+        }
+        Insert: {
+          created_at?: string
+          delivery_location: string
+          distance?: number | null
+          estimated_price?: number | null
+          id?: string
+          pickup_location: string
+          scheduled_date?: string | null
+          scheduled_time?: string | null
+          status?: string | null
+          user_id: string
+          vehicle_type?: string | null
+        }
+        Update: {
+          created_at?: string
+          delivery_location?: string
+          distance?: number | null
+          estimated_price?: number | null
+          id?: string
+          pickup_location?: string
+          scheduled_date?: string | null
+          scheduled_time?: string | null
+          status?: string | null
+          user_id?: string
+          vehicle_type?: string | null
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          amount: number | null
+          booking_id: string | null
+          created_at: string
+          currency: string | null
+          id: string
+          status: string | null
+          stripe_session_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount?: number | null
+          booking_id?: string | null
+          created_at?: string
+          currency?: string | null
+          id?: string
+          status?: string | null
+          stripe_session_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number | null
+          booking_id?: string | null
+          created_at?: string
+          currency?: string | null
+          id?: string
+          status?: string | null
+          stripe_session_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
