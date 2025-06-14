@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -185,14 +184,6 @@ const Index = () => {
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-4">
               <Truck className="h-5 w-5 mr-2" />
               Book Your First Trip
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-4"
-              onClick={scrollToVehicleSection}
-            >
-              Join as Driver
             </Button>
           </div>
         </div>

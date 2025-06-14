@@ -70,14 +70,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onJoinDriverClick }) => {
               >
                 📦 Book a Truck Now
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-600 text-lg px-8 py-4"
-                onClick={onJoinDriverClick}
-              >
-                🧑‍✈️ Join as Driver
-              </Button>
+              {/* Removed Join as Driver button */}
             </div>
           </div>
 
