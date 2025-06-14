@@ -14,7 +14,7 @@ const Index = () => {
   // Ref for "services" section
   const vehicleRef = useRef<HTMLDivElement | null>(null);
 
-  // Handler to scroll to vehicle selection (used for driver reg/demo)
+  // Handler to scroll to vehicle selection (used for booking and hero CTA)
   const scrollToVehicleSection = () => {
     if (vehicleRef.current) {
       vehicleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -38,7 +38,7 @@ const Index = () => {
               {/* <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
                 Driver Sign Up
               </Button> */}
-              <Button className="bg-blue-600 hover:bg-blue-700">
+              <Button className="bg-blue-600 hover:bg-blue-700" onClick={scrollToVehicleSection}>
                 Book Now
               </Button>
             </div>
@@ -47,7 +47,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <HeroSection onJoinDriverClick={scrollToVehicleSection} />
+      <HeroSection onBookTruckClick={scrollToVehicleSection} />
 
       {/* Vehicle Selection */}
       <section id="services" className="py-16 bg-white" ref={vehicleRef}>

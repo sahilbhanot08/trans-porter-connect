@@ -5,10 +5,10 @@ import { Card } from '@/components/ui/card';
 import { MapPin, Clock, Shield, Star } from 'lucide-react';
 
 interface HeroSectionProps {
-  onJoinDriverClick?: () => void;
+  onBookTruckClick?: () => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ onJoinDriverClick }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ onBookTruckClick }) => {
   return (
     <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-green-600 text-white relative overflow-hidden">
       {/* Background pattern */}
@@ -67,10 +67,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onJoinDriverClick }) => {
               <Button
                 size="lg"
                 className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-4 hover-scale"
+                onClick={onBookTruckClick}
               >
                 📦 Book a Truck Now
               </Button>
-              {/* Removed Join as Driver button */}
+              {/* No Join as Driver button */}
             </div>
           </div>
 
@@ -107,3 +108,4 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onJoinDriverClick }) => {
 };
 
 export default HeroSection;
+
